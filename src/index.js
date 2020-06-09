@@ -1,9 +1,9 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { View } from 'react-native';
 // import { Container } from './styles';
 
-const App = () => (
-  <View style={{ width: '100%', height: '100%', backgroundColor: '#0FF' }} />
-);
+import Routes from './Routes';
+
+const App = () => <Routes />;
 
 export default App;
