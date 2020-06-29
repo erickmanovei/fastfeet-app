@@ -8,6 +8,11 @@ module.exports = {
     'airbnb-base',
     'prettier',
   ],
+  globals: {
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly",
+    __DEV__: true
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -24,6 +29,7 @@ module.exports = {
     "class-methods-use-this": "off",
     "no-param-reassign": "off",
     "camelcase": "off",
+    "no-console": ["error", { allow: ["tron"] }],
     "no-unused-vars": ["error", {"argsIgnorePattern": "next"}],
     "prettier/prettier": "error",
 
