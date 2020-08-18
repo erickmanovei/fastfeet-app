@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import SignIn from '~/pages/SignIn';
 import Delivery from '~/pages/Delivery';
 import DeliveryDetails from '~/pages/DeliveryDetails';
+import DeliverySendProblems from '~/pages/DeliverySendProblems';
 import Profile from '~/pages/Profile';
 
 const Stack = createStackNavigator();
@@ -77,6 +78,16 @@ export default () => {
           component={DeliveryDetails}
           options={{
             title: 'Detalhes da encomenda',
+            headerTintColor: '#FFF',
+            headerStyle: { backgroundColor: '#7D40E7' },
+            headerBackTitleVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="DeliverySendProblems"
+          component={DeliverySendProblems}
+          options={{
+            title: 'Informar problema',
             headerTintColor: '#FFF',
             headerStyle: { backgroundColor: '#7D40E7' },
             headerBackTitleVisible: false,

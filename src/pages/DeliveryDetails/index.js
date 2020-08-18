@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { format } from 'date-fns';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -17,9 +18,7 @@ import {
 } from './styles';
 import BodyInfo from '~/components/BodyInfo';
 
-// eslint-disable-next-line react/prop-types
-const DeliveryDetails = ({ route }) => {
-  // eslint-disable-next-line react/prop-types
+const DeliveryDetails = ({ route, navigation }) => {
   const { deliveryId } = route.params;
 
   const [delivery, setDelivery] = useState({});
@@ -43,6 +42,12 @@ const DeliveryDetails = ({ route }) => {
       return 'Retirada';
     }
     return 'Entregue';
+  };
+
+  const handleSendProblems = () => {
+    navigation.navigate('DeliverySendProblems', {
+      deliveryId,
+    });
   };
 
   return (
@@ -97,7 +102,7 @@ const DeliveryDetails = ({ route }) => {
           marginRight: 20,
         }}
       >
-        <LeftButton>
+        <LeftButton onPress={handleSendProblems}>
           <Icon name="highlight-off" size={30} color="#E74040" />
           <TextButton style={{ textAlign: 'center' }}>
             Informar Problema
@@ -121,3 +126,9 @@ const DeliveryDetails = ({ route }) => {
 };
 
 export default DeliveryDetails;
+
+DeliveryDetails.propTypes = {
+  route: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  navigation: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+    .isRequired,
+};

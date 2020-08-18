@@ -22,7 +22,11 @@ const BodyInfo = ({ children, title, icon, ...rest }) => {
 };
 
 BodyInfo.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.element,
+  ]).isRequired,
   title: PropTypes.string,
   icon: PropTypes.string,
 };

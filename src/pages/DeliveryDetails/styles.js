@@ -32,7 +32,7 @@ export const Description = styled.Text`
 `;
 
 export const LineSpace = styled.View`
-  width: 1;
+  width: 1px;
   height: 25px;
 `;
 
