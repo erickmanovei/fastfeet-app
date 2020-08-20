@@ -9,6 +9,8 @@ import SignIn from '~/pages/SignIn';
 import Delivery from '~/pages/Delivery';
 import DeliveryDetails from '~/pages/DeliveryDetails';
 import DeliverySendProblems from '~/pages/DeliverySendProblems';
+import DeliveryShowProblems from '~/pages/DeliveryShowProblems';
+import DeliveryConfirm from '~/pages/DeliveryConfirm';
 import Profile from '~/pages/Profile';
 
 const Stack = createStackNavigator();
@@ -88,6 +90,26 @@ export default () => {
           component={DeliverySendProblems}
           options={{
             title: 'Informar problema',
+            headerTintColor: '#FFF',
+            headerStyle: { backgroundColor: '#7D40E7' },
+            headerBackTitleVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="DeliveryShowProblems"
+          component={DeliveryShowProblems}
+          options={{
+            title: 'Visualizar problemas',
+            headerTintColor: '#FFF',
+            headerStyle: { backgroundColor: '#7D40E7' },
+            headerBackTitleVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="DeliveryConfirm"
+          component={DeliveryConfirm}
+          options={{
+            title: 'Confirmar entrega',
             headerTintColor: '#FFF',
             headerStyle: { backgroundColor: '#7D40E7' },
             headerBackTitleVisible: false,

@@ -49,78 +49,98 @@ const DeliveryDetails = ({ route, navigation }) => {
       deliveryId,
     });
   };
+  const handleShowProblems = () => {
+    navigation.navigate('DeliveryShowProblems', {
+      deliveryId,
+    });
+  };
+  const handleConfirm = () => {
+    navigation.navigate('DeliveryConfirm', {
+      deliveryId,
+    });
+  };
 
   return (
     <Container>
       <HeaderBackground />
-      <BodyInfo
-        title="Informações da Entrega"
-        icon="local-shipping"
-        style={{ marginTop: 30 }}
-      >
-        <Title>DESTINATÁRIO</Title>
-        <Description>{delivery?.recipient?.name}</Description>
-        <LineSpace />
-        <Title>ENDEREÇO DE ENTREGA</Title>
-        <Description>{`${delivery?.recipient?.address}, ${delivery?.recipient?.address_number}, ${delivery?.recipient?.city}-${delivery?.recipient?.state}, ${delivery?.recipient?.zip}`}</Description>
-        <LineSpace />
-        <Title>PRODUTO</Title>
-        <Description>{delivery?.product}</Description>
-      </BodyInfo>
-      <BodyInfo
-        title="Situação da Entrega"
-        icon="event"
-        style={{ marginTop: 5 }}
-      >
-        <Title>STATUS</Title>
-        <Description>{getStatus()}</Description>
-        <LineSpace />
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View>
-            <Title>DATA DE RETIRADA</Title>
-            <Description>
-              {delivery.start_date
-                ? format(new Date(delivery.start_date), 'dd/MM/yyyy')
-                : '--/--/----'}
-            </Description>
+      <View style={{ display: 'flex', alignItems: 'center' }}>
+        <BodyInfo
+          title="Informações da Entrega"
+          icon="local-shipping"
+          style={{ marginTop: 30, width: '90%' }}
+        >
+          <Title>DESTINATÁRIO</Title>
+          <Description>{delivery?.recipient?.name}</Description>
+          <LineSpace />
+          <Title>ENDEREÇO DE ENTREGA</Title>
+          <Description>{`${delivery?.recipient?.address}, ${delivery?.recipient?.address_number}, ${delivery?.recipient?.city}-${delivery?.recipient?.state}, ${delivery?.recipient?.zip}`}</Description>
+          <LineSpace />
+          <Title>PRODUTO</Title>
+          <Description>{delivery?.product}</Description>
+        </BodyInfo>
+        <BodyInfo
+          title="Situação da Entrega"
+          icon="event"
+          style={{ marginTop: 5, width: '90%' }}
+        >
+          <Title>STATUS</Title>
+          <Description>{getStatus()}</Description>
+          <LineSpace />
+          <View
+            style={{ flexDirection: 'row', justifyContent: 'space-between' }}
+          >
+            <View>
+              <Title>DATA DE RETIRADA</Title>
+              <Description>
+                {delivery.start_date
+                  ? format(new Date(delivery.start_date), 'dd/MM/yyyy')
+                  : '--/--/----'}
+              </Description>
+            </View>
+            <View>
+              <Title>DATA DE ENTREGA</Title>
+              <Description>
+                {delivery.end_date
+                  ? format(new Date(delivery.end_date), 'dd/MM/yyyy')
+                  : '--/--/----'}
+              </Description>
+            </View>
           </View>
-          <View>
-            <Title>DATA DE ENTREGA</Title>
-            <Description>
-              {delivery.end_date
-                ? format(new Date(delivery.end_date), 'dd/MM/yyyy')
-                : '--/--/----'}
-            </Description>
-          </View>
-        </View>
-      </BodyInfo>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginLeft: 20,
-          marginRight: 20,
-        }}
-      >
-        <LeftButton onPress={handleSendProblems}>
-          <Icon name="highlight-off" size={30} color="#E74040" />
-          <TextButton style={{ textAlign: 'center' }}>
-            Informar Problema
-          </TextButton>
-        </LeftButton>
-        <CenterButton>
-          <Icon name="info-outline" size={30} color="#E7BA40" />
-          <TextButton style={{ textAlign: 'center' }}>
-            Visualizar Problemas
-          </TextButton>
-        </CenterButton>
-        <RightButton>
-          <Icon name="check-circle" size={30} color="#7D40E7" />
-          <TextButton style={{ textAlign: 'center' }}>
-            Confirmar Entrega
-          </TextButton>
-        </RightButton>
+        </BodyInfo>
       </View>
+      {delivery?.start_date ? (
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginLeft: 20,
+            marginRight: 20,
+          }}
+        >
+          {!delivery?.end_date ? (
+            <LeftButton onPress={handleSendProblems}>
+              <Icon name="highlight-off" size={30} color="#E74040" />
+              <TextButton style={{ textAlign: 'center' }}>
+                Informar Problema
+              </TextButton>
+            </LeftButton>
+          ) : null}
+          <CenterButton onPress={handleShowProblems}>
+            <Icon name="info-outline" size={30} color="#E7BA40" />
+            <TextButton style={{ textAlign: 'center' }}>
+              Visualizar Problemas
+            </TextButton>
+          </CenterButton>
+          {!delivery?.end_date ? (
+            <RightButton onPress={handleConfirm}>
+              <Icon name="check-circle" size={30} color="#7D40E7" />
+              <TextButton style={{ textAlign: 'center' }}>
+                Confirmar Entrega
+              </TextButton>
+            </RightButton>
+          ) : null}
+        </View>
+      ) : null}
     </Container>
   );
 };

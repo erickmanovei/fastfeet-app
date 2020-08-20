@@ -13,7 +13,7 @@ export function* signIn({ payload }) {
 
     // history.push('/delivery');
   } catch (err) {
-    Alert.alert('Falha na autenticação', 'ID inexistente!');
+    Alert.alert('Falha na autenticação', err.message);
     yield put(signFailure());
   }
 }

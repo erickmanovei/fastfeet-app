@@ -29,12 +29,11 @@ const DeliverySendProblems = ({ route, navigation }) => {
   return (
     <Container>
       <HeaderBackground />
-      <BodyInfo style={{ marginTop: 30 }}>
+      <BodyInfo style={{ marginTop: 30, width: '90%' }}>
         <TextField
           multiline
           numberOfLines={8}
           placeholder="Inclua aqui o problema que ocorreu na entrega."
-          textAlignVertical
           value={description}
           onChangeText={setDescription}
         />
